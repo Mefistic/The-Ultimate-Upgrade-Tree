@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+* {
+	box-sizing: border-box;
+	border-collapse: collapse;
+	font-family: 'Roboto';
+	user-select: none;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+body {
+	background: #001;
+	padding: 2vw;
+	line-height: 2.5em;
+}
+
+#main {
+	position: absolute;
+}
+
+#main > div {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.iHateCSS > div {
+	display: inline-block;
+	margin: 2vw;
+}
+
+.iHateCSS {
+	text-align: center;
+}
+
+.upg {
+	font-size: 0.8vw;
+	background-color: #18F;
+	color: #000;
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: #000 .2vw .2vw .2vw;
+}
+
+.upgBought {
+	font-size: 0.8vw;
+	background-color: #048;
+	color: #000;
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: #000 .2vw .2vw .2vw;
+}
+
+.presUpg {
+	font-size: 0.8vw;
+	background-color: #1F1;
+	color: #000;
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: #000 .2vw .2vw .2vw;
+}
+
+.presUpgBought {
+	font-size: 0.8vw;
+	background-color: #181;
+	color: #000;
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: #000 .2vw .2vw .2vw;
+}
+
+#currency {
+	position: fixed;
+	top: 90vh;
+	left: 1vw;
+	background-color: #0005;
+}
+
+td {
+	padding: 0 2vw;
+}
+
+#points {
+	color: #18F;
+	font-size: 1.5vw;
+	font-weight: 600;
+}
+
+#presPoints {
+	color: #1F1;
+	font-size: 1.5vw;
+	font-weight: 600;
+}

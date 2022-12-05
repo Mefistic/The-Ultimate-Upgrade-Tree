@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The Ultimate Upgrade Tree</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
+	<script src="logarithmica_numerus_lite_min.js"></script>
+	<script src="variables.js"></script>
+	<script src="format.js"></script>
+	<script src="game.js"></script>
+	<script src="debug.js"></script>
+</head>
+<body>
+	<div id="main">
+		<div class="upg" id="upg0" onclick="buyUpg(0)">Start Generating Points.<br>0 Points</div>
+		<br>
+		<div class="iHateCSS" id="row1">
+			<div class="upg" id="upg1" onclick="buyUpg(1)">Double point gain.<br>10 Points</div>
+			<div class="upg" id="upg2" onclick="buyUpg(2)">Points are boosted by reset time.<br><span id="upg2desc"></span></div>
+		</div>
+		<div class="iHateCSS" id="row2">
+			<div class="upg" id="upg3" onclick="buyUpg(3)">Triple point gain.<br>60 Points</div>
+			<div class="upg" id="upg4" onclick="buyUpg(4)">Points are boosted more by reset time.<br><span id="upg4desc"></span></div>
+		</div>
+		<div class="iHateCSS" id="row3">
+			<div class="presUpg" id="prestige" onclick="prestige()">Reset all points and point upgrades.<br><span id="prestigedesc"></span></div>
+			<div class="upg" id="upg5" onclick="buyUpg(5)">Quadruple point gain.<br>500 Points</div>
+			<div class="upg" id="upg6" onclick="buyUpg(6)" style="font-size: 90%">Points are further boosted by reset time.<br><span id="upg6desc"></span></div>
+		</div>
+		<div class="iHateCSS" id="row4">
+			<div class="presUpg" id="presUpg1" onclick="buyPresUpg(1)">Triple point gain.<br>5 Prestige Points</div>
+			<div class="upg" id="upg7" onclick="buyUpg(7)">Quintuple point gain.<br>100,000 Points</div>
+			<div class="upg" id="upg8" onclick="buyUpg(8)">Points boost themselves.<br><span id="upg8desc"></span></div>
+			<div class="upg" id="upg9" onclick="buyUpg(9)">Double prestige point gain.<br>1e9 Points</div>
+		</div>
+	</div>
+	<table id="currency" style="text-align:center;width:100%;">
+		<tr>
+			<td id="points"></td>
+			<td id="presPoints"></td>
+		</tr>
+	</table>
+</body>
+
+<script>
+
+// Make the DIV element draggable:
+dragElement(document.getElementById("main"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    document.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = Math.max(Math.min((elmnt.offsetTop - pos2), 100), -100) + "px";
+    elmnt.style.left = Math.max(Math.min((elmnt.offsetLeft - pos1), 700), -400) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+</script>
+</html>
