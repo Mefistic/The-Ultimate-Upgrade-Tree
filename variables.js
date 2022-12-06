@@ -1,4 +1,4 @@
-var upgAmount = 12
+const upgAmount = 12
 
 const upgCosts = {
 	0: new Decimal(0),
@@ -16,7 +16,7 @@ const upgCosts = {
 	12: new Decimal(1e15),
 }
 
-var presUpgAmount = 7
+const presUpgAmount = 7
 
 const presUpgCosts = {
 	1: new Decimal(25),
@@ -28,7 +28,7 @@ const presUpgCosts = {
 	7: new Decimal(2.5e5),
 }
 
-var timeUpgAmount = 6
+const timeUpgAmount = 6
 
 const timeUpgCosts = {
 	1: new Decimal(15),
@@ -37,6 +37,15 @@ const timeUpgCosts = {
 	4: new Decimal(100),
 	5: new Decimal(200),
 	6: new Decimal(400),
+}
+
+const reinUpgAmount = 4
+
+const reinUpgCosts = {
+	1: new Decimal(1),
+	2: new Decimal(3),
+	3: new Decimal(5),
+	4: new Decimal(10),
 }
 
 var player = {}
@@ -60,13 +69,13 @@ if (!player.upgrade) {
 if (!player.points) player.points = new Decimal(0)
 if (!player.prestigePoints) player.prestigePoints = new Decimal(0)
 if (!player.timePoints) player.timePoints = new Decimal(0)
-if (!player.reincarnationPoints) player.reincarnationPoints = new Decimal(0)
+if (!player.reinPoints) player.reinPoints = new Decimal(0)
 
 player.resetTime = new Decimal(player.resetTime)
 player.points = new Decimal(player.points)
 player.prestigePoints = new Decimal(player.prestigePoints)
 player.timePoints = new Decimal(player.timePoints)
-player.reincarnationPoints = new Decimal(player.reincarnationPoints)
+player.reinPoints = new Decimal(player.reinPoints)
 
 function save() {
 	localStorage.setItem('TUUT', JSON.stringify(player))

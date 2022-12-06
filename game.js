@@ -29,6 +29,12 @@ function buyTimeUpg(u) {
 	player.timePoints = player.timePoints.sub(timeUpgCosts[u])
 }
 
+function buyReinUpg(u) {
+	if (!player.reinPoints.gte(reinUpgCosts[u]) || player.upgrade['r' + u]) return
+	player.upgrade['r' + u] = true
+	player.reinPoints = player.reinPoints.sub(reinUpgCosts[u])
+}
+
 function getPointGain() {
 	if (!player.upgrade[0]) return new Decimal(0)
 	var temp = new Decimal(1)
@@ -47,6 +53,8 @@ function getPointGain() {
 	if (player.upgrade['p3']) temp = temp.mul(getPresUpg3Effect())
 	if (player.upgrade['p6']) temp = temp.mul(6)
 	if (player.upgrade['t6']) temp = temp.mul(8)
+	if (player.upgrade['r1']) temp = temp.mul(5)
+	if (player.upgrade['r4']) temp = temp.mul(5)
 	return temp
 }
 
@@ -57,6 +65,8 @@ function getTickspeed() {
 	if (player.upgrade['t3']) temp = temp.mul(3)
 	if (player.upgrade['t4']) temp = temp.mul(getTimeUpg4Effect())
 	if (player.upgrade['t5']) temp = temp.mul(2)
+	if (player.upgrade['r2']) temp = temp.mul(3)
+	if (player.upgrade['r4']) temp = temp.mul(5)
 	return temp
 }
 
@@ -95,16 +105,24 @@ function getPresUpg4Effect() {
 }
 
 function getTimeUpg2Effect() {
-	var temp = new Decimal(player.points.log(1e10)).max(1)
+	var temp = new Decimal(player.points.pow(0.05)).max(1)
 	return temp
 }
 function getTimeUpg4Effect() {
-	var temp = new Decimal(player.timePoints.pow(0.2)).max(1)
+	var temp = new Decimal(player.timePoints.pow(0.5)).max(1)
+	return temp
+}
+
+function getReinPointGain() {
+	var temp = new Decimal(player.timePoints.pow(0.2))
+	temp = temp.floor()
 	return temp
 }
 
 function getTimePointGain() {
 	var temp = player.prestigePoints.pow(0.2)
+	if (player.upgrade['r2']) temp = temp.mul(5)
+	if (player.upgrade['r3']) temp = temp.mul(5)
 	temp = temp.floor()
 	return temp
 }
@@ -116,6 +134,8 @@ function getPresPointGain() {
 	if (player.upgrade['p4']) temp = temp.mul(getPresUpg4Effect())
 	if (player.upgrade['p5']) temp = temp.mul(2)
 	if (player.upgrade['p7']) temp = temp.mul(3)
+	if (player.upgrade['r1']) temp = temp.mul(5)
+	if (player.upgrade['r3']) temp = temp.mul(10)
 	temp = temp.floor()
 	return temp
 }
@@ -131,7 +151,7 @@ function prestige() {
 }
 
 function timeWarp() {
-	if (!getTimePointGain().gte(1)) return
+	if (!getTimePointGain().gte(1) || !player.prestigePoints.gte(1e6)) return
 	player.timePoints = player.timePoints.add(getTimePointGain())
 	player.points = new Decimal(0)
 	player.prestigePoints = new Decimal(0)
@@ -144,10 +164,29 @@ function timeWarp() {
 	}
 }
 
+function rein() {
+	if (!getTimePointGain().gte(1) || !player.timePoints.gte(100)) return
+	player.reinPoints = player.reinPoints.add(getReinPointGain())
+	player.points = new Decimal(0)
+	player.prestigePoints = new Decimal(0)
+	player.timePoints = new Decimal(0)
+	player.resetTime = new Decimal(0)
+	for (i=0; i<upgAmount+1; i++) {
+		player.upgrade[i] = false
+	}
+	for (i=1; i<presUpgAmount+1; i++) {
+		player.upgrade['p'+i] = false
+	}
+	for (i=1; i<timeUpgAmount+1; i++) {
+		player.upgrade['t'+i] = false
+	}
+}
+
 function updateUI() {
 	document.getElementById('points').innerHTML = 'Points:<br>' + format(player.points, 0, 3)
 	document.getElementById('presPoints').innerHTML = 'Prestige Points:<br>' + format(player.prestigePoints, 0, 3)
 	document.getElementById('timePoints').innerHTML = 'Time Points:<br>' + format(player.timePoints, 0, 3)
+	document.getElementById('reinPoints').innerHTML = 'Rein Points:<br>' + format(player.reinPoints, 0, 3)
 
 	if (player.upgrade[2])
 		if (getUpg2Effect().eq(1000))
@@ -211,11 +250,21 @@ function updateUI() {
 		if (player.upgrade['t' + i]) document.getElementById('timeUpg'+i).className = 'timeUpgBought'
 		else document.getElementById('timeUpg'+i).className = 'timeUpg'
 	}
+
+	for (i=1; i<reinUpgAmount+1; i++) {
+		if (player.upgrade['r' + i]) document.getElementById('reinUpg'+i).className = 'reinUpgBought'
+		else document.getElementById('reinUpg'+i).className = 'reinUpg'
+	}
 	
 	document.getElementById('prestigedesc').innerHTML = '+ ' + format(getPresPointGain()) + ' Prestige Points'
+
 	if (player.prestigePoints.gte(1e6))
 		document.getElementById('timewarpdesc').innerHTML = '+ ' + format(getTimePointGain()) + ' Time Points'
 	else document.getElementById('timewarpdesc').innerHTML = '1e6 Prestige Points Required'
+
+	if (player.timePoints.gte(100))
+		document.getElementById('reindesc').innerHTML = '+ ' + format(getReinPointGain()) + ' Rein Points'
+	else document.getElementById('reindesc').innerHTML = '100 Time Points Required'
 }
 
 setInterval(gameLoop, 1000/60)
