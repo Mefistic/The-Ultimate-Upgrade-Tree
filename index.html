@@ -15,8 +15,9 @@
 </head>
 <body>
 	<div id="main">
-		<div class="upg" id="upg0" onclick="buyUpg(0)">Start Generating Points.<br>0 Points</div>
-		<br>
+		<div class="iHateCSS">
+			<div class="upg" id="upg0" onclick="buyUpg(0)">Start Generating Points.<br>0 Points</div>
+		</div>
 		<div class="iHateCSS">
 			<div class="upg" id="upg1" onclick="buyUpg(1)">Double point gain.<br>10 Points</div>
 			<div class="upg" id="upg2" onclick="buyUpg(2)">Points are boosted by reset time.<br><span id="upg2desc"></span></div>
@@ -34,7 +35,7 @@
 			<div class="presUpg" id="presUpg1" onclick="buyPresUpg(1)">Triple point gain.<br>25 Prestige Points</div>
 			<div class="upg" id="upg7" onclick="buyUpg(7)">Quintuple point gain.<br>100,000 Points</div>
 			<div class="upg" id="upg8" onclick="buyUpg(8)">Points boost themselves.<br><span id="upg8desc"></span></div>
-			<div class="upg" id="upg9" onclick="buyUpg(9)">Double prestige point gain.<br>1e9 Points</div>
+			<div class="upg" id="upg9" onclick="buyUpg(9)">Double prestige point gain.<br>1e8 Points</div>
 		</div>
 		<div class="iHateCSS">
 			<div class="presUpg" id="presUpg2" onclick="buyPresUpg(2)">Points boost themselves.<br><span id="presupg2desc"></span></div>
@@ -51,11 +52,45 @@
 			<div class="upgSpace"></div>
 			<div class="upgSpace"></div>
 		</div>
+		<div class="iHateCSS">
+			<div class="presUpg" id="presUpg6" onclick="buyPresUpg(6)">Sextuple point gain.<br>100,000 Prestige Points</span></div>
+			<div class="presUpg" id="presUpg7" onclick="buyPresUpg(7)">Triple prestige point gain.<br>250,000 Prestige Points</span></div>
+			<div class="upgSpace"></div>
+			<div class="timeUpg" id="timewarp" onclick="timeWarp()">Reset all previous progress.<br><span id="timewarpdesc"></span></div>
+			<div class="upgSpace"></div>
+		</div>
+		<div class="iHateCSS">
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="timeUpg" id="timeUpg1" onclick="buyTimeUpg(1)">Triple the tickspeed.<br>15 Time Points</span></div>
+		</div>
+		<div class="iHateCSS">
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="timeUpg" id="timeUpg2" onclick="buyTimeUpg(2)">Points boost tickspeed.<br><span id="timeupg2desc"></span></span></div>
+			<div class="timeUpg" id="timeUpg3" onclick="buyTimeUpg(3)">Triple the tickspeed.<br>50 Time Points</span></div>
+		</div>
+		<div class="iHateCSS">
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="timeUpg" id="timeUpg4" onclick="buyTimeUpg(4)">Time points boost tickspeed.<br><span id="timeupg4desc"></span></div>
+			<div class="upgSpace"></div>
+		</div>
+		<div class="iHateCSS">
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="timeUpg" id="timeUpg5" onclick="buyTimeUpg(5)">Double Tickspeed<br>200 Time Points</div>
+			<div class="timeUpg" id="timeUpg6" onclick="buyTimeUpg(6)">8x Point Gain.<br>400 Time Points</span></div>
+		</div>
 	</div>
 	<table id="currency" style="text-align:center;width:100%;">
 		<tr>
 			<td id="points"></td>
 			<td id="presPoints"></td>
+			<td id="timePoints"></td>
 		</tr>
 	</table>
 </body>
@@ -95,7 +130,7 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = Math.max(Math.min((elmnt.offsetTop - pos2), 100), -1000) + "px";
+    elmnt.style.top = Math.max(Math.min((elmnt.offsetTop - pos2), 100), -1500) + "px";
     elmnt.style.left = Math.max(Math.min((elmnt.offsetLeft - pos1), 800), -400) + "px";
   }
 

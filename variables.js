@@ -1,3 +1,5 @@
+var upgAmount = 12
+
 const upgCosts = {
 	0: new Decimal(0),
 	1: new Decimal(10),
@@ -7,12 +9,14 @@ const upgCosts = {
 	5: new Decimal(500),
 	6: new Decimal(4200),
 	7: new Decimal(1e5),
-	8: new Decimal(1e7),
-	9: new Decimal(1e9),
+	8: new Decimal(1e6),
+	9: new Decimal(1e8),
 	10: new Decimal(1e10),
-	11: new Decimal(1e11),
+	11: new Decimal(1e12),
 	12: new Decimal(1e15),
 }
+
+var presUpgAmount = 7
 
 const presUpgCosts = {
 	1: new Decimal(25),
@@ -20,6 +24,19 @@ const presUpgCosts = {
 	3: new Decimal(1000),
 	4: new Decimal(10000),
 	5: new Decimal(20000),
+	6: new Decimal(1e5),
+	7: new Decimal(2.5e5),
+}
+
+var timeUpgAmount = 6
+
+const timeUpgCosts = {
+	1: new Decimal(15),
+	2: new Decimal(30),
+	3: new Decimal(50),
+	4: new Decimal(100),
+	5: new Decimal(200),
+	6: new Decimal(400),
 }
 
 var player = {}
