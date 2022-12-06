@@ -9,10 +9,17 @@ const upgCosts = {
 	7: new Decimal(1e5),
 	8: new Decimal(1e7),
 	9: new Decimal(1e9),
+	10: new Decimal(1e10),
+	11: new Decimal(1e11),
+	12: new Decimal(1e15),
 }
 
 const presUpgCosts = {
-	1: new Decimal(5)
+	1: new Decimal(25),
+	2: new Decimal(250),
+	3: new Decimal(1000),
+	4: new Decimal(10000),
+	5: new Decimal(20000),
 }
 
 var player = {}

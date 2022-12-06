@@ -83,11 +83,17 @@ body {
 	box-shadow: #000 .2vw .2vw .2vw;
 }
 
+.upgSpace {
+	width: 16vw;
+	padding: 0.5vw 1vw;
+}
+
 #currency {
 	position: fixed;
-	top: 90vh;
-	left: 1vw;
-	background-color: #0005;
+	top: 89vh;
+	left: 0vw;
+	background-color: #001;
+	height: 6vw;
 }
 
 td {

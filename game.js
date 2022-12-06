@@ -17,9 +17,9 @@ function buyUpg(u) {
 }
 
 function buyPresUpg(u) {
-	if (!player.prestigePoints.gte(presUpgCosts[u]) || player.upgrade['p'+u]) return
-	player.upgrade['p'+u] = true
-	player.points = player.prestigePoints.sub(presUpgCosts[u])
+	if (!player.prestigePoints.gte(presUpgCosts[u]) || player.upgrade['p' + u]) return
+	player.upgrade['p' + u] = true
+	player.prestigePoints = player.prestigePoints.sub(presUpgCosts[u])
 }
 
 function getPointGain() {
@@ -33,7 +33,11 @@ function getPointGain() {
 	if (player.upgrade[6]) temp = temp.mul(getUpg6Effect())
 	if (player.upgrade[7]) temp = temp.mul(4)
 	if (player.upgrade[8]) temp = temp.mul(getUpg8Effect())
+	if (player.upgrade[10]) temp = temp.mul(5)
+	if (player.upgrade[11]) temp = temp.mul(getUpg11Effect())
 	if (player.upgrade['p1']) temp = temp.mul(3)
+	if (player.upgrade['p2']) temp = temp.mul(getPresUpg2Effect())
+	if (player.upgrade['p3']) temp = temp.mul(getPresUpg3Effect())
 	return temp
 }
 
@@ -50,13 +54,34 @@ function getUpg6Effect() {
 	return temp
 }
 function getUpg8Effect() {
+	var temp = player.points.root(20).max(1)
+	return temp
+}
+function getUpg11Effect() {
+	var temp = player.resetTime.div(15).max(1).min(1000)
+	return temp
+}
+
+function getPresUpg2Effect() {
 	var temp = player.points.root(8).max(1)
+	return temp
+}
+function getPresUpg3Effect() {
+	var temp = player.prestigePoints.root(2).max(1)
+	return temp
+}
+function getPresUpg4Effect() {
+	var temp = player.prestigePoints.root(8).max(1)
 	return temp
 }
 
 function getPresPointGain() {
-	var temp = player.points.pow(0.2).sub(25).floor()
+	var temp = player.points.pow(0.2)
 	if (player.upgrade[9]) temp = temp.mul(2)
+	if (player.upgrade[12]) temp = temp.mul(3)
+	if (player.upgrade['p4']) temp = temp.mul(getPresUpg4Effect())
+	if (player.upgrade['p5']) temp = temp.mul(2)
+	temp = temp.floor()
 	return temp
 }
 
@@ -65,16 +90,9 @@ function prestige() {
 	player.prestigePoints = player.prestigePoints.add(getPresPointGain())
 	player.points = new Decimal(0)
 	player.resetTime = new Decimal(0)
-	player.upgrade[0] = false
-	player.upgrade[1] = false
-	player.upgrade[2] = false
-	player.upgrade[3] = false
-	player.upgrade[4] = false
-	player.upgrade[5] = false
-	player.upgrade[6] = false
-	player.upgrade[7] = false
-	player.upgrade[8] = false
-	player.upgrade[9] = false
+	for (i=0; i<12; i++) {
+		player.upgrade[i] = false
+	}
 }
 
 function updateUI() {
@@ -97,12 +115,28 @@ function updateUI() {
 		document.getElementById('upg8desc').innerHTML = 'Currently: x' + format(getUpg8Effect(), 1, 0)
 	else document.getElementById('upg8desc').innerHTML = '1e7 Points'
 
-	for (i=0; i<10; i++) {
+	if (player.upgrade[11])
+		document.getElementById('upg11desc').innerHTML = 'Currently: x' + format(getUpg11Effect(), 1, 0)
+	else document.getElementById('upg11desc').innerHTML = '1e11 Points'
+
+	if (player.upgrade['p2'])
+		document.getElementById('presupg2desc').innerHTML = 'Currently: x' + format(getPresUpg2Effect(), 1, 0)
+	else document.getElementById('presupg2desc').innerHTML = '250 Prestige Points'
+
+	if (player.upgrade['p3'])
+		document.getElementById('presupg3desc').innerHTML = 'Currently: x' + format(getPresUpg3Effect(), 1, 0)
+	else document.getElementById('presupg3desc').innerHTML = '1,000 Prestige Points'
+
+	if (player.upgrade['p4'])
+		document.getElementById('presupg4desc').innerHTML = 'Currently: x' + format(getPresUpg4Effect(), 1, 0)
+	else document.getElementById('presupg4desc').innerHTML = '10,000 Prestige Points'
+
+	for (i=0; i<13; i++) {
 		if (player.upgrade[i]) document.getElementById('upg'+i).className = 'upgBought'
 		else document.getElementById('upg'+i).className = 'upg'
 	}
 
-	for (i=1; i<2; i++) {
+	for (i=1; i<6; i++) {
 		if (player.upgrade['p' + i]) document.getElementById('presUpg'+i).className = 'presUpgBought'
 		else document.getElementById('presUpg'+i).className = 'presUpg'
 	}
