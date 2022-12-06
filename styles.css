@@ -150,10 +150,17 @@ body {
 #currency {
 	position: fixed;
 	width: 100%;
-	bottom: 0;
+	bottom: 0vh;
 	left: 0;
 	background-color: #00000A;
-	height: 6vw;
+	height: 15vh;
+	cursor: default;
+	border-top: #114 solid;
+	box-shadow: inset 0 10vw 12vw -10vw #114A;
+}
+
+#currency > tbody > tr > td {
+	cursor: default;
 }
 
 td {
