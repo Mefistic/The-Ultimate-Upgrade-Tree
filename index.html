@@ -16,11 +16,19 @@
 <body>
 	<div id="main">
 		<div class="iHateCSS">
-			<div class="upg" id="upg0" onclick="buyUpg(0)">Start Generating Points.<br>0 Points</div>
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
+			<div class="upg" id="upg0" onclick="buyUpg(0)">Start Generating Points.<br>Free</div>
+			<div class="upgSpace"></div>
+			<div class="duckUpg" id="duck" onclick="petDuck()">Pet the duck.<br><span id="duckdesc"></span></div>
 		</div>
 		<div class="iHateCSS">
+			<div class="upgSpace"></div>
+			<div class="upgSpace"></div>
 			<div class="upg" id="upg1" onclick="buyUpg(1)">2x point gain.<br>10 Points</div>
 			<div class="upg" id="upg2" onclick="buyUpg(2)">Points are boosted by reset time.<br><span id="upg2desc"></span></div>
+			<div class="duckUpg" id="duckUpg1" onclick="buyDuckUpg(1)">Prestige doesn't reset point upgrades.<br>1 Duck Point</div>
+			<div class="duckUpg" id="duckUpg2" onclick="buyDuckUpg(2)">Time Warp doesn't reset point upgrades.<br>2 Duck Points</div>
 		</div>
 		<div class="iHateCSS">
 			<div class="upg" id="upg3" onclick="buyUpg(3)">3x point gain.<br>60 Points</div>
@@ -101,6 +109,7 @@
 			<td id="presPoints"></td>
 			<td id="timePoints"></td>
 			<td id="reinPoints"></td>
+			<td id="duckPoints"></td>
 		</tr>
 	</table>
 	</div>

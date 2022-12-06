@@ -49,6 +49,13 @@ const reinUpgCosts = {
 	5: new Decimal(25),
 }
 
+const duckUpgAmount = 2
+
+const duckUpgCosts = {
+	1: new Decimal(1),
+	2: new Decimal(2),
+}
+
 var player = {}
 
 if (localStorage.getItem('TUUT')) {
@@ -56,27 +63,23 @@ if (localStorage.getItem('TUUT')) {
 }
 
 player.lastUpdate = player.lastUpdate ?? Date.now()
+player.duckCooldown = player.duckCooldown ?? Date.now() + 3600000
 player.resetTime = player.resetTime ?? new Decimal(0)
 
-if (!player.upgrade) {
-	player.upgrade = {}
-	for (i=0; i<201; i++) {
-		if (!player.upgrade[i]) {
-			player.upgrade[i] = false
-		}
-	}
-}
+if (!player.upgrade) player.upgrade = {}
 
 if (!player.points) player.points = new Decimal(0)
 if (!player.prestigePoints) player.prestigePoints = new Decimal(0)
 if (!player.timePoints) player.timePoints = new Decimal(0)
 if (!player.reinPoints) player.reinPoints = new Decimal(0)
+if (!player.duckPoints) player.duckPoints = new Decimal(0)
 
 player.resetTime = new Decimal(player.resetTime)
 player.points = new Decimal(player.points)
 player.prestigePoints = new Decimal(player.prestigePoints)
 player.timePoints = new Decimal(player.timePoints)
 player.reinPoints = new Decimal(player.reinPoints)
+player.duckPoints = new Decimal(player.duckPoints)
 
 function save() {
 	localStorage.setItem('TUUT', JSON.stringify(player))

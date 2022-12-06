@@ -6,8 +6,9 @@
 	border-collapse: collapse;
 	font-family: 'Roboto';
 	user-select: none;
-	overflow: hidden;
+	overflow-x: hidden;
 	white-space: nowrap;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -61,7 +62,7 @@ body {
 	width: 16vw;
 	padding: 0.5vw 1vw;
 	text-align: center;
-	cursor: pointer;
+	cursor: default;
 	font-weight: 700;
 	border-radius: 0.25vw;
 	box-shadow: inset #0008 0 0 2vw;
@@ -87,6 +88,7 @@ body {
 	width: 16vw;
 	padding: 0.5vw 1vw;
 	text-align: center;
+	cursor: default;
 	font-weight: 700;
 	border-radius: 0.25vw;
 	box-shadow: inset #0008 0 0 2vw;
@@ -112,6 +114,7 @@ body {
 	width: 16vw;
 	padding: 0.5vw 1vw;
 	text-align: center;
+	cursor: default;
 	font-weight: 700;
 	border-radius: 0.25vw;
 	box-shadow: inset #0008 0 0 2vw;
@@ -137,6 +140,7 @@ body {
 	width: 16vw;
 	padding: 0.5vw 1vw;
 	text-align: center;
+	cursor: default;
 	font-weight: 700;
 	border-radius: 0.25vw;
 	box-shadow: inset #0008 0 0 2vw;
@@ -145,6 +149,34 @@ body {
 .upgSpace {
 	width: 16vw;
 	padding: 0.5vw 1vw;
+}
+
+.duckUpg {
+	font-size: 0.8vw;
+	color: #000;
+	background-image: url(duckUpg.png);
+	background-size: 8vw;
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: inset #0008 0 0 2vw;
+}
+
+.duckUpgBought {
+	font-size: 0.8vw;
+	color: #000;
+	background-image: url(duckUpgBought.png);
+	background-size: 8vw;
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: inset #0008 0 0 2vw;
 }
 
 #currency {
@@ -189,4 +221,14 @@ td {
 	color: #F1C;
 	font-size: 1.5vw;
 	font-weight: 600;
+}
+
+#duckPoints {
+	color: #FF1;
+	font-size: 1.5vw;
+	font-weight: 600;
+}
+
+div > span {
+	cursor: inherit;
 }

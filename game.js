@@ -35,6 +35,12 @@ function buyReinUpg(u) {
 	player.reinPoints = player.reinPoints.sub(reinUpgCosts[u])
 }
 
+function buyDuckUpg(u) {
+	if (!player.duckPoints.gte(duckUpgCosts[u]) || player.upgrade['duck' + u]) return
+	player.upgrade['duck' + u] = true
+	player.duckPoints = player.duckPoints.sub(duckUpgCosts[u])
+}
+
 function getPointGain() {
 	if (!player.upgrade[0]) return new Decimal(0)
 	var temp = new Decimal(1)
@@ -137,6 +143,11 @@ function getTimePointGain() {
 	return temp
 }
 
+function getDuckPointGain() {
+	var temp = new Decimal(1)
+	return temp
+}
+
 function getPresPointGain() {
 	var temp = player.points.pow(0.2)
 	if (player.upgrade[9]) temp = temp.mul(2)
@@ -157,6 +168,7 @@ function prestige() {
 	player.prestigePoints = player.prestigePoints.add(getPresPointGain()).round()
 	player.points = new Decimal(0)
 	player.resetTime = new Decimal(0)
+	if (player.upgrade['duck1']) return
 	for (i=0; i<upgAmount+1; i++) {
 		player.upgrade[i] = false
 	}
@@ -168,11 +180,12 @@ function timeWarp() {
 	player.points = new Decimal(0)
 	player.prestigePoints = new Decimal(0)
 	player.resetTime = new Decimal(0)
-	for (i=0; i<upgAmount+1; i++) {
-		player.upgrade[i] = false
-	}
 	for (i=1; i<presUpgAmount+1; i++) {
 		player.upgrade['p'+i] = false
+	}
+	if (player.upgrade['duck2']) return
+	for (i=0; i<upgAmount+1; i++) {
+		player.upgrade[i] = false
 	}
 }
 
@@ -194,11 +207,19 @@ function rein() {
 	}
 }
 
+function petDuck() {
+	if (player.duckCooldown < Date.now()) {
+		player.duckCooldown = Date.now() + 3600000
+		player.duckPoints = player.duckPoints.add(getDuckPointGain())
+	}
+}
+
 function updateUI() {
 	document.getElementById('points').innerHTML = 'Points:<br>' + format(player.points, 0, 3)
 	document.getElementById('presPoints').innerHTML = 'Prestige Points:<br>' + format(player.prestigePoints, 0, 3)
 	document.getElementById('timePoints').innerHTML = 'Time Points:<br>' + format(player.timePoints, 0, 3)
 	document.getElementById('reinPoints').innerHTML = 'Rein Points:<br>' + format(player.reinPoints, 0, 3)
+	document.getElementById('duckPoints').innerHTML = 'Duck Points:<br>' + format(player.duckPoints, 0, 3)
 
 	if (player.upgrade[2])
 		if (getUpg2Effect().eq(1000))
@@ -272,6 +293,11 @@ function updateUI() {
 		else document.getElementById('reinUpg'+i).className = 'reinUpg'
 	}
 
+	for (i=1; i<duckUpgAmount+1; i++) {
+		if (player.upgrade['duck' + i]) document.getElementById('duckUpg'+i).className = 'duckUpgBought'
+		else document.getElementById('duckUpg'+i).className = 'duckUpg'
+	}
+
 	if (player.points.gte(1e6)) {
 		document.getElementById('prestigedesc').innerHTML = '+ ' + format(getPresPointGain()) + ' Prestige Points'
 	}
@@ -291,6 +317,13 @@ function updateUI() {
 	}
 	else {
 		document.getElementById('reindesc').innerHTML = '5,000 Time Points Required'
+	}
+
+	if (player.duckCooldown < Date.now()) {
+		document.getElementById('duckdesc').innerHTML = '+ ' + getDuckPointGain() + ' Duck Points'
+	}
+	else {
+		document.getElementById('duckdesc').innerHTML = time(player.duckCooldown - Date.now() + 1000)
 	}
 }
 
