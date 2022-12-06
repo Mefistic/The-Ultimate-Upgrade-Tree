@@ -95,11 +95,11 @@ function getPresUpg4Effect() {
 }
 
 function getTimeUpg2Effect() {
-	var temp = new Decimal(player.points.log(1e5)).max(1)
+	var temp = new Decimal(player.points.log(1e10)).max(1)
 	return temp
 }
 function getTimeUpg4Effect() {
-	var temp = new Decimal(player.timePoints.log(4)).max(1)
+	var temp = new Decimal(player.timePoints.pow(0.2)).max(1)
 	return temp
 }
 

@@ -12,7 +12,7 @@
 body {
 	background: #001;
 	padding: 2vw;
-	line-height: 2.5em;
+	line-height: 2.5vw;
 }
 
 #main {
@@ -115,8 +115,9 @@ body {
 
 #currency {
 	position: fixed;
-	top: 89vh;
-	left: 0vw;
+	width: 100%;
+	bottom: 0;
+	left: 0;
 	background-color: #001;
 	height: 6vw;
 }

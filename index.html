@@ -29,7 +29,7 @@
 		<div class="iHateCSS">
 			<div class="presUpg" id="prestige" onclick="prestige()">Reset all points and point upgrades.<br><span id="prestigedesc"></span></div>
 			<div class="upg" id="upg5" onclick="buyUpg(5)">Quadruple point gain.<br>500 Points</div>
-			<div class="upg" id="upg6" onclick="buyUpg(6)" style="font-size: 90%">Points are further boosted by reset time.<br><span id="upg6desc"></span></div>
+			<div class="upg" id="upg6" onclick="buyUpg(6)" style="font-size: 0.78vw">Points are further boosted by reset time.<br><span id="upg6desc"></span></div>
 		</div>
 		<div class="iHateCSS">
 			<div class="presUpg" id="presUpg1" onclick="buyPresUpg(1)">Triple point gain.<br>25 Prestige Points</div>
@@ -131,7 +131,7 @@ function dragElement(elmnt) {
     pos4 = e.clientY;
     // set the element's new position:
     elmnt.style.top = Math.max(Math.min((elmnt.offsetTop - pos2), 100), -1500) + "px";
-    elmnt.style.left = Math.max(Math.min((elmnt.offsetLeft - pos1), 800), -400) + "px";
+    elmnt.style.left = Math.max(Math.min((elmnt.offsetLeft - pos1), 800), -800) + "px";
   }
 
   function closeDragElement() {
