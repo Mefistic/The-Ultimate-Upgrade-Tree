@@ -43,7 +43,7 @@ body {
 
 .upg {
 	font-size: 0.8vw;
-	background-image: url(normalupg.svg);
+	background-image: url(normalUpg.svg);
 	color: #000;
 	width: 16vw;
 	padding: 0.5vw 1vw;
@@ -56,7 +56,7 @@ body {
 
 .upgBought {
 	font-size: 0.8vw;
-	background-image: url(normalupgbought.svg);
+	background-image: url(normalUpgBought.svg);
 	color: #000;
 	width: 16vw;
 	padding: 0.5vw 1vw;
