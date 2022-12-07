@@ -49,11 +49,19 @@ const reinUpgCosts = {
 	5: new Decimal(25),
 }
 
+const ascUpgAmount = 3
+
+const ascUpgCosts = {
+	1: new Decimal(1),
+	2: new Decimal(2),
+	3: new Decimal(5),
+}
+
 const duckUpgAmount = 2
 
 const duckUpgCosts = {
-	1: new Decimal(1),
-	2: new Decimal(2),
+	1: new Decimal(5),
+	2: new Decimal(10),
 }
 
 var player = {}
@@ -72,6 +80,7 @@ if (!player.points) player.points = new Decimal(0)
 if (!player.prestigePoints) player.prestigePoints = new Decimal(0)
 if (!player.timePoints) player.timePoints = new Decimal(0)
 if (!player.reinPoints) player.reinPoints = new Decimal(0)
+if (!player.ascPoints) player.ascPoints = new Decimal(0)
 if (!player.duckPoints) player.duckPoints = new Decimal(0)
 
 player.resetTime = new Decimal(player.resetTime)
@@ -79,6 +88,7 @@ player.points = new Decimal(player.points)
 player.prestigePoints = new Decimal(player.prestigePoints)
 player.timePoints = new Decimal(player.timePoints)
 player.reinPoints = new Decimal(player.reinPoints)
+player.ascPoints = new Decimal(player.ascPoints)
 player.duckPoints = new Decimal(player.duckPoints)
 
 function save() {
@@ -86,3 +96,9 @@ function save() {
 }
 
 setInterval(save, 1000)
+
+// for those who exploited the rein unbalancing >:3
+
+if (player.reinPoints.gte(2e4) && player.ascPoints.lt(1) && !player.upgrade['a1'] && !player.upgrade['a2'] && !player.upgrade['a3']) {
+	player.reinPoints = new Decimal(2e4)
+}

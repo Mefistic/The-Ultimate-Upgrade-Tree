@@ -146,6 +146,33 @@ body {
 	box-shadow: inset #0008 0 0 2vw;
 }
 
+.ascUpg {
+	font-size: 0.8vw;
+	color: #000;
+	background-image: url(ascUpg.svg);
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: inset #0008 0 0 2vw;
+	height: 6vw;
+}
+
+.ascUpgBought {
+	font-size: 0.8vw;
+	color: #000;
+	background-image: url(ascUpgBought.svg);
+	width: 16vw;
+	padding: 0.5vw 1vw;
+	text-align: center;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0.25vw;
+	box-shadow: inset #0008 0 0 2vw;
+}
+
 .upgSpace {
 	width: 16vw;
 	padding: 0.5vw 1vw;
@@ -154,8 +181,7 @@ body {
 .duckUpg {
 	font-size: 0.8vw;
 	color: #000;
-	background-image: url(duckUpg.png);
-	background-size: 8vw;
+	background-image: url(duckUpg.svg);
 	width: 16vw;
 	padding: 0.5vw 1vw;
 	text-align: center;
@@ -168,8 +194,7 @@ body {
 .duckUpgBought {
 	font-size: 0.8vw;
 	color: #000;
-	background-image: url(duckUpgBought.png);
-	background-size: 8vw;
+	background-image: url(duckUpgBought.svg);
 	width: 16vw;
 	padding: 0.5vw 1vw;
 	text-align: center;
@@ -219,6 +244,12 @@ td {
 
 #reinPoints {
 	color: #F1C;
+	font-size: 1.5vw;
+	font-weight: 600;
+}
+
+#ascPoints {
+	color: #FF1;
 	font-size: 1.5vw;
 	font-weight: 600;
 }
