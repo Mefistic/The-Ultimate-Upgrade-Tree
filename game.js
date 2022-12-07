@@ -14,37 +14,37 @@ function genLoop(t) {
 function buyUpg(u) {
 	if (!player.points.gte(upgCosts[u]) || player.upgrade[u]) return
 	player.upgrade[u] = true
-	player.points = player.points.sub(upgCosts[u])
+	player.points = player.points.sub(upgCosts[u]).round()
 }
 
 function buyPresUpg(u) {
 	if (!player.prestigePoints.gte(presUpgCosts[u]) || player.upgrade['p' + u]) return
 	player.upgrade['p' + u] = true
-	player.prestigePoints = player.prestigePoints.sub(presUpgCosts[u])
+	player.prestigePoints = player.prestigePoints.sub(presUpgCosts[u]).round()
 }
 
 function buyTimeUpg(u) {
 	if (!player.timePoints.gte(timeUpgCosts[u]) || player.upgrade['t' + u]) return
 	player.upgrade['t' + u] = true
-	player.timePoints = player.timePoints.sub(timeUpgCosts[u])
+	player.timePoints = player.timePoints.sub(timeUpgCosts[u]).round()
 }
 
 function buyReinUpg(u) {
 	if (!player.reinPoints.gte(reinUpgCosts[u]) || player.upgrade['r' + u]) return
 	player.upgrade['r' + u] = true
-	player.reinPoints = player.reinPoints.sub(reinUpgCosts[u])
+	player.reinPoints = player.reinPoints.sub(reinUpgCosts[u]).round()
 }
 
 function buyAscUpg(u) {
 	if (!player.ascPoints.gte(ascUpgCosts[u]) || player.upgrade['a' + u]) return
 	player.upgrade['a' + u] = true
-	player.ascPoints = player.ascPoints.sub(ascUpgCosts[u])
+	player.ascPoints = player.ascPoints.sub(ascUpgCosts[u]).round()
 }
 
 function buyDuckUpg(u) {
 	if (!player.duckPoints.gte(duckUpgCosts[u]) || player.upgrade['duck' + u]) return
 	player.upgrade['duck' + u] = true
-	player.duckPoints = player.duckPoints.sub(duckUpgCosts[u])
+	player.duckPoints = player.duckPoints.sub(duckUpgCosts[u]).round()
 }
 
 function getPointGain() {
