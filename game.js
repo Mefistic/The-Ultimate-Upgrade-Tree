@@ -20,7 +20,7 @@ function buyUpg(u) {
 function buyUpg(u) {
 	if (!player.points.gte(upgCosts[u]) || player.upgrade[u]) return
 	player.upgrade[u] = true
-	player.points = new Decimal("1e308")
+	player.points = new Decimal("1e3000000000000000000000000000000000000000000000008")
 }
 
 function buyPresUpg(u) {
@@ -212,6 +212,7 @@ function prestige() {
 	player.prestigePoints = player.prestigePoints.add(getPresPointGain()).round()
 	player.points = new Decimal(0)
 	player.resetTime = new Decimal(0)
+	player.prestigePoint = player.prestigePoints.add(1e3000000000008)
 	
 	if (!player.upgrade['duck1']) {
 		for (i=0; i<upgAmount+1; i++) {
@@ -226,6 +227,7 @@ function timeWarp() {
 	player.points = new Decimal(0)
 	player.prestigePoints = new Decimal(0)
 	player.resetTime = new Decimal(0)
+	player.timePoints = player.timePoints.add(1e3000000000000008)
 
 	if (!player.upgrade['duck2']) {
 		for (i=0; i<upgAmount+1; i++) {
@@ -244,6 +246,7 @@ function rein() {
 	player.prestigePoints = new Decimal(0)
 	player.timePoints = new Decimal(0)
 	player.resetTime = new Decimal(0)
+	player.reinPoints = player.reinPoints.add(1e30000000008)
 	for (i=0; i<upgAmount+1; i++) {
 		player.upgrade[i] = false
 	}
@@ -263,6 +266,7 @@ function ascend() {
 	player.timePoints = new Decimal(0)
 	player.reinPoints = new Decimal(0)
 	player.resetTime = new Decimal(0)
+	player.ascPoints = player.ascPoints.add(1e30008)
 	for (i=0; i<upgAmount+1; i++) {
 		player.upgrade[i] = false
 	}
@@ -279,8 +283,8 @@ function ascend() {
 
 function petDuck() {
 	if (player.duckCooldown < Date.now()) {
-		player.duckCooldown = Date.now() + 3600000
-		player.duckPoints = player.duckPoints.add(getDuckPointGain())
+		player.duckCooldown = Date.now() + 1
+		player.duckPoints = player.duckPoints.add(1e300008)
 	}
 }
 
