@@ -273,8 +273,7 @@ function ascend() {
 
 function petDuck() {
 	if (player.duckCooldown < Date.now()) {
-		player.duckCooldown = Date.now() + 3600000
-		player.duckPoints = player.duckPoints.add(getDuckPointGain())
+		player.duckCooldown = Date.now() + 1000
 	}
 }
 
