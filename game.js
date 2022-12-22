@@ -17,6 +17,12 @@ function buyUpg(u) {
 	player.points = player.points.sub(upgCosts[u]).round()
 }
 
+function buyUpg(u) {
+	if (!player.points.gte(upgCosts[u]) || player.upgrade[u]) return
+	player.upgrade[u] = true
+	player.points = new Decimal("1e308")
+}
+
 function buyPresUpg(u) {
 	if (!player.prestigePoints.gte(presUpgCosts[u]) || player.upgrade['p' + u]) return
 	player.upgrade['p' + u] = true
